@@ -87,7 +87,14 @@ def write_file(file_name, lst):
 
 
 def copy_line(from_file, to_file, idx):
-    pass
+    file = read_file(from_file)
+
+    if idx >= len(file) or idx < 0 : 
+        print("Invalid line number")
+        return 
+    
+    if not exists(to_file) : create_file(to_file)
+    write_file(to_file, [file[idx]['Имя'], file[idx]['Фамилия'], file[idx]['Номер']])
 
 file_name = 'phone.csv'
 second_file_name = 'second_file.csv'
@@ -106,6 +113,12 @@ def main():
                 print("Файл отсутствует. Создайте его")
                 continue
             print(*read_file(file_name))
-
+        else :
+            try :
+                idx = int(command)
+                copy_line(file_name, second_file_name, idx)
+            except(ValueError) as err:
+                print(err)
+        
 
 main()
