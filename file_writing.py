@@ -87,11 +87,11 @@ def write_file(file_name, lst):
 
 
 def copy_line(from_file, to_file, idx):
-    file = read_file(from_file)
-
     if not exists(from_file) :
         print("File does not exist")
         return
+    
+    file = read_file(from_file)
 
     if idx >= len(file) or idx < 0 : 
         print("Invalid line number")
